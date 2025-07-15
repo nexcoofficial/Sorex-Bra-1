@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorex Bra One Piece - Premium Support Bra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#e91e63',
+                        secondary: '#9c27b0',
+                        dark: '#1a1a1a',
+                        light: '#f8f9fa'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .urgent-timer {
+            background: rgba(255,255,255,0.9);
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.1);
+            color: #000;
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        .color-option {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .color-option:hover, .color-option.active {
+            transform: scale(1.1);
+            border-color: #e91e63;
+        }
+        
+        .size-chart {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .size-chart.active {
+            max-height: 500px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .model-gallery {
+            scrollbar-width: thin;
+            scrollbar-color: #e91e63 transparent;
+        }
+        
+        .model-gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .model-gallery::-webkit-scrollbar-thumb {
+            background-color: #e91e63;
+            border-radius: 3px;
+        }
+        
+        .sticky-bar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .floating-buy {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 40;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
+        }
+        
+        @media (min-width: 1024px) {
+            .product-details {
+                position: sticky;
+                top: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white py-4 px-4 lg:px-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://cdn.orderonline.id/uploads/images_2157571752572384395.png" alt="Verified Store" class="h-10 w-10 mr-2">
+                <h1 class="text-xl font-bold text-gray-800">Sorex Official Store</h1>
+            </div>
+            <div class="flex items-center">
+                <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded flex items-center">
+                    <i class="fas fa-check-circle mr-1"></i> Verified
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sticky Product Bar -->
+    <div class="sticky-bar bg-white py-3 px-4 hidden md:block">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://down-id.img.susercontent.com/file/id-11134207-7r98v-lvzcr2lwc0tafa.webp" alt="Sorex Bra" class="h-16 w-16 object-cover rounded-lg border">
+                <div class="ml-4">
+                    <h2 class="font-bold text-gray-800">Sorex Bra One Piece Cup Penyangga Lembut</h2>
+                    <div class="flex items-center mt-1">
+                        <span class="text-primary font-bold text-lg">Rp 188.000</span>
+                        <span class="text-gray-500 line-through ml-2 text-sm">Rp 299.000</span>
+                    </div>
+                </div>
+            </div>
+            <button id="buyButton" class="bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                Beli Sekarang
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Product Gallery -->
+            <div class="lg:w-1/2">
+                <!-- Main Image -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-4">
+                    <img id="mainImage" src="https://down-id.img.susercontent.com/file/id-11134207-7r98v-lvzcr2lwc0tafa.webp" alt="Sorex Bra" class="w-full h-auto object-cover cursor-zoom-in" onclick="openLightbox(this.src)">
+                </div>
+                
+                <!-- Thumbnails -->
+                <div class="grid grid-cols-4 gap-3 mb-8">
+                    <div class="bg-white rounded-lg shadow p-1 cursor-pointer">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7r98v-lvzcr2lwc0tafa.webp" alt="Thumbnail 1" class="w-full h-20 object-cover" onclick="changeMainImage(this.src)">
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-1 cursor-pointer">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7r992-lpfdoypepd3ifc.webp" alt="Thumbnail 2" class="w-full h-20 object-cover" onclick="changeMainImage(this.src)">
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-1 cursor-pointer">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7qul3-lf447us8lncqca.webp" alt="Thumbnail 3" class="w-full h-20 object-cover" onclick="changeMainImage(this.src)">
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-1 cursor-pointer">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7rbk2-m9ybdg1fatsu32.webp" alt="Thumbnail 4" class="w-full h-20 object-cover" onclick="changeMainImage(this.src)">
+                    </div>
+                </div>
+                
+                <!-- Urgency Timer -->
+                <div class="urgent-timer p-4 text-center mb-8">
+                    <p class="text-sm mb-2 text-gray-700">Harga promo berakhir dalam:</p>
+                    <div class="flex justify-center space-x-1 items-center">
+                        <div>
+                            <span id="hours" class="text-xl font-bold">02</span>
+                            <span class="block text-xs text-gray-600">Jam</span>
+                        </div>
+                        <span class="text-xl font-bold">:</span>
+                        <div>
+                            <span id="minutes" class="text-xl font-bold">45</span>
+                            <span class="block text-xs text-gray-600">Menit</span>
+                        </div>
+                        <span class="text-xl font-bold">:</span>
+                        <div>
+                            <span id="seconds" class="text-xl font-bold">30</span>
+                            <span class="block text-xs text-gray-600">Detik</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 text-xs text-gray-600">
+                        <i class="fas fa-bolt mr-1"></i> 12 Terjual dalam 1 Jam Terakhir
+                    </div>
+                </div>
+                
+                <!-- Product Video -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+                    <div class="p-4 border-b">
+                        <h3 class="font-bold text-gray-800 flex items-center">
+                            <i class="fas fa-play-circle text-primary mr-2"></i> Video Produk
+                        </h3>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://down-bs-sg.vod.susercontent.com/api/v4/11110105/mms/id-11110105-6kmj2-m9zol492olq31d.16000081747731499.mp4" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <!-- Model Gallery -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-4 border-b">
+                        <h3 class="font-bold text-gray-800 flex items-center">
+                            <i class="fas fa-camera text-primary mr-2"></i> Model Menggunakan Produk
+                        </h3>
+                    </div>
+                    <div class="model-gallery flex overflow-x-auto p-4 space-x-4">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7rbkd-m8vlzih2l3az53.webp" alt="Model 1" class="h-64 object-cover rounded-lg cursor-pointer" onclick="openLightbox(this.src)">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7rbk5-m8vlzih2joqj4c.webp" alt="Model 2" class="h-64 object-cover rounded-lg cursor-pointer" onclick="openLightbox(this.src)">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7rbkd-m8vlzih2ia638d.webp" alt="Model 3" class="h-64 object-cover rounded-lg cursor-pointer" onclick="openLightbox(this.src)">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Details -->
+            <div class="lg:w-1/2">
+                <div class="product-details">
+                    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                        <h1 class="text-2xl font-bold text-gray-800 mb-2">Sorex Bra One Piece Cup Penyangga Lembut</h1>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-600 ml-2">4.7 (1.2K ulasan)</span>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-end">
+                                <span class="text-primary font-bold text-3xl">Rp 188.000</span>
+                                <span class="text-gray-500 line-through ml-2 text-lg">Rp 299.000</span>
+                                <span class="bg-red-100 text-red-800 text-sm font-semibold ml-3 px-2 py-1 rounded">37% OFF</span>
+                            </div>
+                            <p class="text-green-600 font-semibold mt-1">
+                                <i class="fas fa-truck mr-1"></i> Gratis Ongkir
+                            </p>
+                        </div>
+                        
+                        <div class="border-t border-b py-6 my-6">
+                            <h3 class="font-bold text-gray-800 mb-3">Pilih Warna:</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <div class="color-option active" data-color="rose">
+                                    <img src="https://down-id.img.susercontent.com/file/id-11134207-7rase-m1c8n6ha6lgea1@resize_w450_nl.webp" alt="Rose" class="w-16 h-16 object-cover rounded-lg">
+                                    <p class="text-center text-xs mt-1">Rose</p>
+                                </div>
+                                <div class="color-option" data-color="hitam">
+                                    <img src="https://down-id.img.susercontent.com/file/id-11134207-7rase-m1c8n6ha9elabb@resize_w450_nl.webp" alt="Hitam" class="w-16 h-16 object-cover rounded-lg">
+                                    <p class="text-center text-xs mt-1">Hitam</p>
+                                </div>
+                                <div class="color-option" data-color="coklat">
+                                    <img src="https://down-id.img.susercontent.com/file/id-11134207-7ras8-m1c8n6ha800u1f@resize_w450_nl.webp" alt="Coklat Muda" class="w-16 h-16 object-cover rounded-lg">
+                                    <p class="text-center text-xs mt-1">Coklat Muda</p>
+                                </div>
+                                <div class="color-option" data-color="ungu">
+                                    <img src="https://down-id.img.susercontent.com/file/id-11134207-7rash-m2ag67c2bejm73@resize_w450_nl.webp" alt="Ungu" class="w-16 h-16 object-cover rounded-lg">
+                                    <p class="text-center text-xs mt-1">Ungu</p>
+                                </div>
+                                <div class="color-option" data-color="biru">
+                                    <img src="https://down-id.img.susercontent.com/file/id-11134207-7rbk8-m9jwq3xdxrejfc@resize_w450_nl.webp" alt="Biru" class="w-16 h-16 object-cover rounded-lg">
+                                    <p class="text-center text-xs mt-1">Biru</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-bold text-gray-800 mb-3">Pilih Ukuran:</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <button class="border border-gray-300 rounded-lg px-4 py-2 hover:border-primary hover:bg-primary hover:text-white transition">S</button>
+                                <button class="border border-gray-300 rounded-lg px-4 py-2 hover:border-primary hover:bg-primary hover:text-white transition">M</button>
+                                <button class="border border-primary bg-primary text-white rounded-lg px-4 py-2">L</button>
+                                <button class="border border-gray-300 rounded-lg px-4 py-2 hover:border-primary hover:bg-primary hover:text-white transition">XL</button>
+                                <button class="border border-gray-300 rounded-lg px-4 py-2 hover:border-primary hover:bg-primary hover:text-white transition">XXL</button>
+                            </div>
+                            <button id="sizeChartBtn" class="text-primary font-semibold mt-3 flex items-center">
+                                <i class="fas fa-ruler mr-2"></i> Lihat Tabel Ukuran
+                            </button>
+                            <div id="sizeChart" class="size-chart mt-4">
+                                <img src="https://down-id.img.susercontent.com/file/id-11134207-7rbk1-mb27h7nj55rsfa" alt="Tabel Ukuran" class="w-full rounded-lg">
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="flex items-center border border-gray-300 rounded-lg">
+                                <button class="px-4 py-2 text-gray-600 hover:text-primary">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="px-4 py-2 border-x border-gray-300">1</span>
+                                <button class="px-4 py-2 text-gray-600 hover:text-primary">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <p class="text-gray-600 ml-4">Tersisa: <span class="font-bold">24</span> buah</p>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button class="bg-primary hover:bg-secondary text-white font-bold py-4 px-6 rounded-lg transition duration-300 flex-1 flex items-center justify-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang
+                            </button>
+                            <button class="border border-primary text-primary font-bold py-4 px-6 rounded-lg transition duration-300 flex-1 flex items-center justify-center">
+                                <i class="fas fa-heart mr-2"></i> Wishlist
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Description -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">Deskripsi Produk</h2>
+                        <div class="prose max-w-none">
+                            <p class="mb-4">Sorex Bra One Piece dengan desain inovatif yang memberikan kenyamanan maksimal dan penyangga sempurna untuk bentuk payudara Anda. Dibuat dengan bahan premium yang lembut dan elastis, bra ini memberikan dukungan optimal tanpa mengorbankan kenyamanan.</p>
+                            
+                            <h3 class="font-bold text-lg mb-2">Keunggulan Produk:</h3>
+                            <ul class="list-disc pl-5 mb-4">
+                                <li>One-piece cup tanpa jahitan untuk kenyamanan maksimal</li>
+                                <li>Bahan lembut dan breathable</li>
+                                <li>Penyangga yang optimal tanpa kawat</li>
+                                <li>Desain modern dengan pilihan warna elegan</li>
+                                <li>Elastisitas tinggi untuk bentuk sempurna</li>
+                                <li>Anti-slip strap untuk kenyamanan sepanjang hari</li>
+                            </ul>
+                            
+                            <h3 class="font-bold text-lg mb-2">Spesifikasi:</h3>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
+                                <li class="flex"><span class="font-semibold w-32">Bahan:</span> Nylon 80%, Spandex 20%</li>
+                                <li class="flex"><span class="font-semibold w-32">Jenis Cup:</span> Soft Cup</li>
+                                <li class="flex"><span class="font-semibold w-32">Tipe Bra:</span> Non-wired</li>
+                                <li class="flex"><span class="font-semibold w-32">Tali:</span> Adjustable</li>
+                                <li class="flex"><span class="font-semibold w-32">Pengait:</span> 3 tingkat</li>
+                                <li class="flex"><span class="font-semibold w-32">Perawatan:</span> Cuci tangan, jangan diputihkan</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Order Form -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">Form Pemesanan</h2>
+                        <div class="ooef">
+                            <form class="orderonline-embed-form" data-username="mila" data-product-slug="sorex-bra-1" data-product-id="68761f8b74f1649ea505cb2d" id="oo-embed-form-sorex-bra-1-9563" data-origin="orderonline">
+                                <div class="ooef-loader">
+                                    <style>
+                                        .ooef-loader{visibility: hidden;opacity: 0;position: absolute;left: 0;right: 0;top: 0;bottom: 0;display: flex;justify-content: center;align-items: center;flex-direction: column;animation: ooLoadingIn 10s ease;-webkit-animation: ooLoadingIn 10s ease;animation-fill-mode: forwards;overflow: hidden}
+                                        @keyframes ooLoadingIn{0%{visibility: hidden;opacity: 0}20%{visibility: visible;opacity: 0}100%{visibility: visible;opacity: 1}}
+                                        @-webkit-keyframes ooLoadingIn{0%{visibility: hidden;opacity: 0}20%{visibility: visible;opacity: 0}100%{visibility: visible;opacity: 1}}
+                                        .ooef-loader>div,.ooef-loader>div:after{border-radius: 50%;width: 2.5rem;height: 2.5rem}
+                                        .ooef-loader>div{font-size: 10px;position: relative;text-indent: -9999em;border: .25rem solid #f5f5f5;border-left: .25rem solid #55c4cf;-webkit-transform: translateZ(0);-ms-transform: translateZ(0);transform: translateZ(0);-webkit-animation: ooLoading 1.1s infinite linear;animation: ooLoading 1.1s infinite linear}
+                                        .ooef-loader.error>div{border-left: .25rem solid #ff4500;animation-duration: 5s}
+                                        @-webkit-keyframes ooLoading{0%{-webkit-transform: rotate(0);transform: rotate(0)}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg)}}
+                                        @keyframes ooLoading{0%{-webkit-transform: rotate(0);transform: rotate(0)}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg)}}
+                                    </style>
+                                    <div aria-live="polite" role="status">
+                                        <div>Loading...</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating Buy Button (Mobile) -->
+    <div class="floating-buy bg-white py-3 px-4 block md:hidden">
+        <div class="container mx-auto flex justify-between items-center">
+            <div>
+                <div class="flex items-end">
+                    <span class="text-primary font-bold text-md">Rp 188.000</span>
+                    <span class="text-gray-500 line-through ml-2 text-xs">Rp 299.000</span>
+                </div>
+            </div>
+            <button class="bg-primary hover:bg-secondary text-white font-bold py-2 px-6 rounded-full transition">
+                Beli Sekarang
+            </button>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightboxImage" class="lightbox-content" src="" alt="Enlarged view">
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <img src="https://cdn.orderonline.id/uploads/images_2157571752572384395.png" alt="Verified Store" class="h-12 w-12 mx-auto mb-4">
+            <h3 class="text-xl font-bold mb-2">Sorex Official Store</h3>
+            <p class="text-gray-400 mb-4">Produk Berkualitas • Garansi 30 Hari • Pengiriman Cepat</p>
+            <p class="text-gray-500 text-sm">© 2023 Sorex Official Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Lightbox functionality
+        function openLightbox(src) {
+            document.getElementById('lightboxImage').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Change main image
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+        
+        // Color selection
+        const colorOptions = document.querySelectorAll('.color-option');
+        colorOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Size chart toggle
+        const sizeChartBtn = document.getElementById('sizeChartBtn');
+        const sizeChart = document.getElementById('sizeChart');
+        
+        sizeChartBtn.addEventListener('click', function() {
+            sizeChart.classList.toggle('active');
+            this.innerHTML = sizeChart.classList.contains('active') ? 
+                '<i class="fas fa-times mr-2"></i> Tutup Tabel Ukuran' : 
+                '<i class="fas fa-ruler mr-2"></i> Lihat Tabel Ukuran';
+        });
+        
+        // Timer countdown
+        function updateTimer() {
+            const hoursElement = document.getElementById('hours');
+            const minutesElement = document.getElementById('minutes');
+            const secondsElement = document.getElementById('seconds');
+            
+            let hours = parseInt(hoursElement.textContent);
+            let minutes = parseInt(minutesElement.textContent);
+            let seconds = parseInt(secondsElement.textContent);
+            
+            seconds--;
+            
+            if (seconds < 0) {
+                seconds = 59;
+                minutes--;
+                
+                if (minutes < 0) {
+                    minutes = 59;
+                    hours--;
+                    
+                    if (hours < 0) {
+                        hours = 2;
+                        minutes = 45;
+                        seconds = 0;
+                    }
+                }
+            }
+            
+            hoursElement.textContent = hours.toString().padStart(2, '0');
+            minutesElement.textContent = minutes.toString().padStart(2, '0');
+            secondsElement.textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateTimer, 1000);
+        
+        // OrderOnline Embed Script
+        if (typeof xLogError != 'function') {
+            var xLogError = function (error) {
+                var req = new XMLHttpRequest();
+                var payload = JSON.stringify({ url: document.location.href, line: error.line, stack: error.stack });
+                var params = 'message=' + encodeURIComponent(error.name) + '&payload=' + encodeURIComponent(payload) + '&type=embed&level=error';
+                req.open('POST', 'https://api.orderonline.id/log', true);
+                req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                req.send(params);
+            };
+        }
+        
+        try {
+            if (typeof xEmbedScript != 'function') {
+                var xEmbedScript = function () {
+                    !function(w, d, e, v, id, t, s) {
+                        if (d.getElementById(id)) return;
+                        t = d.createElement(e);t.async = !0;t.src = v;t.id = id;
+                        s = d.getElementsByTagName(e)[0];
+                        s.parentNode.insertBefore(t, s);
+                    }(window, document, 'script', 'https://cdn.orderonline.id/js/embed-v2-slim.min.js?v=8.0.4', 'oo-embed-js');
+                };
+            }
+            
+            if (typeof xEmbedInit != 'function') {
+                var xEmbedInit = function (w, n) {
+                    if (w.ooe) return;
+                    n = w.ooe = function() {
+                        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    };
+                    if (!w._ooe) w._ooe = n;
+                    n.push = n;n.loaded = !0;n.version = '8.0.4';n.queue = [];
+                };
+            }
+            
+            xEmbedInit(window);
+            ooe('setup', 'redirect', 'https://mila.orderonline.id');
+            ooe('init', '5f1a7b8fa9bf807da24d83bb', '68761f8b74f1649ea505cb2d', '68761f8b74f1649ea505cb2e', 'oo-embed-form-sorex-bra-1-9563', {
+                "mode":"page",
+                "action":"Klik untuk pemesanan",
+                "title":"Form Pemesanan",
+                "triggerPixel":true,
+                "triggerGtm":true
+            });
+            
+            if (!window.jQuery) {
+                !function(w, d, e, v, id, t, s) {
+                    if (d.getElementById(id)) return;
+                    t = d.createElement(e);t.async = !0;t.src = v;t.id = id;
+                    t.addEventListener('load', xEmbedScript);
+                    s = d.getElementsByTagName(e)[0];
+                    s.parentNode.insertBefore(t, s);
+                }(window, document, 'script', 'https://cdn.orderonline.id/js/vendor/jquery.min.js', 'oo-embed-jquery');
+            } else {
+                xEmbedScript();
+            }
+        } catch (e) {
+            xLogError(e);
+            throw e;
+        }
+    </script>
+</body>
+</html>
